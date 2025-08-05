@@ -13,11 +13,11 @@ class AppSettings(BaseSettings):
     """
 
     app_env: str = 'dev'
-    app_name: str = 'FluxServer'
+    app_name: str = 'DataV'
     app_root_path: str = '/dev-api'
     app_static_path: str = os.path.join(os.getcwd(), "static/templates")
     app_host: str = '0.0.0.0'
-    app_port: int = 9099
+    app_port: int = 8000
     app_version: str = '1.0.0'
     app_reload: bool = True
     app_workers: int = 5
@@ -42,11 +42,11 @@ class DataBaseSettings(BaseSettings):
     """
 
     db_type: Literal['mysql', 'postgresql'] = 'mysql'
-    db_host: str = '127.0.0.1'
-    db_port: int = 3306
-    db_username: str = 'root123'
-    db_password: str = 'xxxx'
-    db_database: str = 'xxxx'
+    db_host: str = '10.6.7.15'
+    db_port: int = 33061
+    db_username: str = 'root'
+    db_password: str = 'root'
+    db_database: str = 'flux-data-words'
     db_echo: bool = True
     db_max_overflow: int = 10
     db_pool_size: int = 50
@@ -59,7 +59,7 @@ class RedisSettings(BaseSettings):
     Redis配置
     """
 
-    redis_host: str = '127.0.0.1'
+    redis_host: str = '10.6.7.15'
     redis_port: int = 6379
     redis_username: str = ''
     redis_password: str = ''
