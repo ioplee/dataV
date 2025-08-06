@@ -17,7 +17,7 @@ class AppSettings(BaseSettings):
     app_root_path: str = '/dev-api'
     app_static_path: str = os.path.join(os.getcwd(), "static/templates")
     app_host: str = '0.0.0.0'
-    app_port: int = 8000
+    app_port: int = 9099
     app_version: str = '1.0.0'
     app_reload: bool = True
     app_workers: int = 5

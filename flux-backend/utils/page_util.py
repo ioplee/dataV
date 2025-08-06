@@ -91,6 +91,34 @@ class PageUtil:
 
         return result
 
+    @classmethod
+    async def paginateBySql(cls, total: int, query_result, page_num: int, page_size: int):
+        """
+        自定义 分页信息封装
+        输入查询语句和分页信息，返回分页数据列表结果
+
+        :param total: 总记录数
+        :param query_result: 当页记录列表
+        :param page_num: 当前页码
+        :param page_size: 当前页面数据量
+        :return: 分页数据对象
+        """
+        paginated_data = []
+        for row in query_result:
+            if row and len(row) == 1:
+                paginated_data.append(row[0])
+            else:
+                paginated_data.append(row)
+        has_next = math.ceil(total / page_size) > page_num
+        result = PageResponseModel(
+            rows=CamelCaseUtil.transform_result(paginated_data),
+            pageNum=page_num,
+            pageSize=page_size,
+            total=total,
+            hasNext=has_next,
+        )
+        return result
+
 
 def get_page_obj(data_list: List, page_num: int, page_size: int):
     """

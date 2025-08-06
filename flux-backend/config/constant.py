@@ -1,3 +1,14 @@
+# coding:utf-8
+'''
+**************************************************
+@File   ：flux-backend -> datameta_service
+@IDE    ：PyCharm
+@Author ：robin
+@Date   ：2025/8/6 11:58
+**************************************************
+'''
+
+
 class CommonConstant:
     """
     常用常量
@@ -150,3 +161,16 @@ class MenuConstant:
     LAYOUT = 'Layout'
     PARENT_VIEW = 'ParentView'
     INNER_LINK = 'InnerLink'
+
+
+class BizConstant:
+    """
+    业务常量:
+
+    ODS_SPACE_NAME: 元数据空间命名
+    DWD_SPACE_NAME: 数据加工空间命名
+    ADS_SPACE_NAME：数据产品空间命名
+    """
+    ODS_SPACE_NAME = 'jsw_data_ods'
+    DWD_SPACE_NAME = 'jsw_data_dwd'
+    ADS_SPACE_NAME = 'jsw_data_ads'

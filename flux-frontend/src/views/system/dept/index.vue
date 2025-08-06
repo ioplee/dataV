@@ -292,6 +292,9 @@ function getList() {
     loading.value = true
     listDept(queryParams.value).then((response) => {
         deptList.value = proxy.handleTree(response.data, 'deptId')
+        console.log('查询部门列表,结果如下：')
+        console.log(deptList.value)
+        console.log('查询部门列表,查询结束：')
         loading.value = false
     })
 }
