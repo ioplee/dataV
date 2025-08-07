@@ -5,6 +5,7 @@ from sqlalchemy import func, select, Select
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional, List
 from utils.common_util import CamelCaseUtil
+from utils.log_util import logger
 
 
 class PageResponseModel(BaseModel):
@@ -65,6 +66,9 @@ class PageUtil:
         if is_page:
             total = (await db.execute(select(func.count('*')).select_from(query.subquery()))).scalar()
             query_result = await db.execute(query.offset((page_num - 1) * page_size).limit(page_size))
+            print("---query_result---")
+            print(query_result)
+            print("---query_result---")
             paginated_data = []
             for row in query_result:
                 if row and len(row) == 1:
@@ -117,6 +121,7 @@ class PageUtil:
             total=total,
             hasNext=has_next,
         )
+        logger.info("page content is：", result)
         return result
 
 

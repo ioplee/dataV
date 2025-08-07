@@ -25,6 +25,7 @@ from module_admin.controller.user_controller import userController
 from module_app.controller.app_login_controller import appLoginController
 from module_gen.controller.gen_controller import gen1Controller
 from module_website.controller.home_controller import homeRouter
+from module_datameta.controller.datameta_controller import datametaController
 
 admin_controllers = [
     {'router': loginController, 'tags': ['登录模块']},
@@ -50,9 +51,8 @@ admin_controllers = [
     {'router': homeRouter, 'tags': ['产品官网']},
     {'router': carDriverController, 'tags': ['测试业务']},
     {'router': studentInfoController, 'tags': ['测试业务']},
-    {'router': importController, 'tags': ['导入数据']}
-
-
+    {'router': importController, 'tags': ['导入数据']},
+    {'router': datametaController, 'tags': ['数据管理']},
 
 ]
 
@@ -60,16 +60,18 @@ app_controllers = [
     {'router': appLoginController, 'prefix': '/wechat', 'tags': ['登录模块']},
 ]
 
+
 def get_admin_router():
     admin_router = APIRouter(prefix="")
     for controller in admin_controllers:
         admin_router.include_router(router=controller.get('router'), tags=controller.get('tags'))
     return admin_router
 
+
 def get_app_router():
     app_router = APIRouter(prefix="/api/v1")
     for controller in app_controllers:
-        app_router.include_router(router=controller.get('router'), prefix=controller.get('prefix') ,
+        app_router.include_router(router=controller.get('router'), prefix=controller.get('prefix'),
                                   tags=controller.get('tags'))
     return app_router
 
@@ -79,4 +81,3 @@ def register_router():
     all_router.include_router(router=get_admin_router())
     all_router.include_router(router=get_app_router())
     return all_router
-

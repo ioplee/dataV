@@ -22,9 +22,12 @@
 #  --------------------------------------------------------------------------------------------------
 # ******************************************************************************/
 import psycopg2
+from psycopg2 import pool
 from psycopg2.extras import RealDictCursor
 import json
 from datetime import datetime
+
+from psycopg2.pool import SimpleConnectionPool
 
 
 # @brief: 建立数据库连接（数仓数据库连接）
@@ -53,6 +56,30 @@ def close_postgreSQL(conn, cur):
     conn.close()
     print('database jsw_data has been closed!')
 
+
+##############################  连接池配置  #########################
+connection_pool = pool.SimpleConnectionPool(
+    minconn=1,
+    maxconn=10,
+    dbname="jsw_data",
+    user="ops",
+    password="Jsw123%^",
+    host="dev.jinshuwan.com",
+    port="5432"
+)
+
+
+# 从连接池中获取连接
+def get_conn_pool():
+    return connection_pool.getconn()
+
+
+# 归还连接回连接池
+def turn_conn_to_pool(conn: SimpleConnectionPool):
+    return connection_pool.putconn(conn)
+
+
+##############################  连接池配置  #########################
 
 ###############################  基础操作和配置    ###################
 # 定义一个转换函数
