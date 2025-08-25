@@ -34,7 +34,7 @@ def get_ods_table_list(
     page_query.set(page_num, page_size)
     ods_table_list = DatametaService.get_ods_tables_page(page_query)
     logger.info('获取 ods 库分页记录成功')
-    return ResponseUtil.success(model_content=ods_table_list)
+    return ResponseUtil.success(rows=ods_table_list)
 
 
 @datametaController.get("/table_list_page")
